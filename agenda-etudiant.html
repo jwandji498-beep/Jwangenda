@@ -72,6 +72,12 @@ footer svg{width:12px;fill:var(--y);vertical-align:-1px}
 #ts{position:fixed;left:50%;transform:translateX(-50%);bottom:80px;background:var(--r);color:#fff;border-radius:10px;padding:8px 14px;font:13px system-ui;z-index:9;max-width:90%}
 dialog{max-width:560px;width:calc(100% - 24px);max-height:85vh;overflow:auto;border:1px solid var(--b);border-radius:14px;background:var(--c);color:var(--t);padding:16px}dialog::backdrop{background:#0009}dialog p{margin:8px 0}
 @media print{.ck,#ts,footer .lk{display:none!important}}
+.ring{position:relative;width:min(260px,70vw);margin:12px auto}.ring svg{width:100%;transform:rotate(-90deg);display:block}.ring circle{fill:none;stroke-width:8}.rb{stroke:var(--b)}.rf{stroke:var(--g);stroke-dasharray:339.3;stroke-linecap:round;transition:stroke-dashoffset .3s linear,stroke .3s}.rf.b{stroke:var(--r)}.ring .tm{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(34px,12vw,54px)}
+.modes{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}.modes button{border:1px solid var(--b);background:var(--c);border-radius:20px;padding:6px 12px;cursor:pointer}.modes .on{background:var(--g);color:#fff;border-color:var(--g)}
+.bars{display:flex;gap:6px;align-items:flex-end;height:130px}.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font:11px system-ui,sans-serif;color:var(--m)}.bars span{width:100%;background:var(--g);border-radius:6px 6px 0 0;min-height:2px;transition:height .4s}
+.pb{width:38%;height:8px;background:var(--b);border-radius:6px;overflow:hidden}.pb i{display:block;height:100%}
+@media print{#set,#pom{display:none!important}}
+dialog{margin:auto;padding:0;max-height:85vh;max-height:85dvh}.dh{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:var(--c);border-bottom:1px solid var(--b)}.dh h2{margin:0}#db{padding:0 16px}body.hasck{padding-bottom:90px}
 </style></head><body>
 <div class="flag"></div>
 <svg aria-hidden="true" class="sbg" viewBox="0 0 24 24"><path d="M12 1.5l3 6.9 7.5.7-5.7 5 1.7 7.4L12 17.5 5.5 21.5l1.7-7.4-5.7-5 7.5-.7z"/></svg>
@@ -95,13 +101,18 @@ dialog{max-width:560px;width:calc(100% - 24px);max-height:85vh;overflow:auto;bor
 
 <section class="sec" id="sub"><form class="card f" id="fu"><label><span data-i="n"></span><input name="n" required maxlength="40"></label><label><span data-i="co"></span><input type="color" name="c" value="#007A5E"></label><button class="btn">＋ <span data-i="add"></span></button></form><div class="card"><h2 data-i="sub"></h2><div id="bl2"></div></div></section>
 
-<section class="sec" id="pom"><div class="card pm"><div class="tag" id="pl" style="display:inline-block;background:var(--g)"></div><div class="tm" id="pt">25:00</div><div class="bt"><button class="btn" id="p1"></button><button class="ib" id="p2"></button></div></div></section>
+<section class="sec" id="pom"><div class="card pm"><div class="modes" id="pmm"></div><div class="ring"><svg aria-hidden="true" viewBox="0 0 120 120"><circle class="rb" cx="60" cy="60" r="54"/><circle class="rf" id="rf" cx="60" cy="60" r="54"/></svg><div class="tm" id="pt">25:00</div></div><label style="max-width:260px;margin:0 auto;text-align:left"><span data-i="s"></span><select class="ss" id="ps0"></select></label><p id="pc" style="margin:10px 0"></p><div class="bt"><button class="btn" id="p1"></button><button class="ib" id="psk"></button><button class="ib" id="p2"></button></div></div>
+<div class="card f"><label><span data-i="kf"></span><input type="number" min="1" max="180" data-k="f"></label><label><span data-i="ks"></span><input type="number" min="1" max="180" data-k="s"></label><label><span data-i="kl"></span><input type="number" min="1" max="180" data-k="l"></label><label><span data-i="kn"></span><input type="number" min="1" max="12" data-k="n"></label><label style="grid-auto-flow:column;justify-content:start;align-items:center;gap:8px"><input type="checkbox" data-k="snd"><span data-i="snd"></span></label></div></section>
 
 <section class="sec" id="note"><div class="card"><h2 data-i="note"></h2><textarea id="nt" data-p="nph"></textarea></div></section>
+<section class="sec on" id="home"><div id="hm"></div></section>
+<section class="sec" id="gr"><form class="card f" id="fg"><label><span data-i="s"></span><select class="ss" name="s"></select></label><label><span data-i="t"></span><input name="t" required maxlength="60"></label><label><span data-i="gv"></span><input type="number" name="v" min="0" step="any" required></label><label><span data-i="gm"></span><input type="number" name="mx" min="1" step="any" value="20" required></label><label><span data-i="cf"></span><input type="number" name="cf" min="0.5" step="any" value="1" required></label><button class="btn">＋ <span data-i="add"></span></button></form><div id="gl"></div></section>
+<section class="sec" id="st"><div id="stl"></div></section>
+<section class="sec" id="set"><div class="card"><h2 data-i="bk"></h2><p data-i="bkx" style="margin-bottom:10px"></p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="exp()" data-i="exp"></button><label class="ib" style="cursor:pointer;display:inline-block;color:var(--t)"><span data-i="imp"></span><input id="im" type="file" accept=".json,application/json" hidden></label></div></div><div class="card"><h2 data-i="dng"></h2><button class="btn" style="background:var(--r)" onclick="if(confirm(T[L].cfm)){try{localStorage.removeItem('agenda-cm')}catch(e){}location.reload()}" data-i="rst"></button></div></section>
 <footer><div><button class="lk" data-d="pv" data-i="pvt"></button> · <button class="lk" data-d="cg" data-i="cgt"></button></div>by Junior Wandji <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.5l3 6.9 7.5.7-5.7 5 1.7 7.4L12 17.5 5.5 21.5l1.7-7.4-5.7-5 7.5-.7z"/></svg></footer>
 <div class="ck" id="ck" role="region" aria-label="Cookies"><span data-i="ckx"></span><button class="lk" data-d="pv" data-i="pvt"></button><button class="btn" id="ok" data-i="ok"></button></div>
 <div id="ts" role="status" hidden></div>
-<dialog id="dg"><h2 id="dh"></h2><div id="db"></div><form method="dialog"><button class="btn" data-i="cl"></button></form></dialog>
+<dialog id="dg"><div class="dh"><h2 id="dh"></h2><form method="dialog"><button class="ib" aria-label="Close">✕</button></form></div><div id="db"></div><form method="dialog" style="padding:0 16px 16px"><button class="btn" data-i="cl"></button></form></dialog>
 </div>
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -114,7 +125,7 @@ sch|Emploi du temps|Timetable
 sub|Matières|Subjects
 pom|Pomodoro|Pomodoro
 note|Bloc-notes|Notes
-search|Rechercher un événement…|Search events…
+search|Rechercher…|Search…
 s1|Événements|Events
 s2|Tâches terminées|Tasks done
 s3|Examens à venir|Upcoming exams
@@ -156,15 +167,47 @@ ok|Compris|Got it
 ckx|Aucun cookie ici : tes données restent dans ton navigateur.|No cookies here: your data stays in your browser.
 inv|Vérifie les champs : titre rempli, heure de fin après le début.|Check the fields: title filled, end time after start.
 pvx|Cet agenda ne collecte aucune donnée personnelle : il n'y a ni compte, ni serveur, ni base de données.¶Tes événements, devoirs, matières et notes sont enregistrés uniquement dans le stockage local de ton navigateur (localStorage), sur ton appareil. L'éditeur ne peut ni les lire ni les récupérer.¶Aucun cookie, aucun outil de mesure d'audience et aucun traceur publicitaire ne sont utilisés, et rien n'est transmis à des tiers.¶Pour effacer tes données : supprime les éléments dans l'agenda ou vide les données du site dans les réglages de ton navigateur. Tu exerces ainsi directement tes droits d'accès, de rectification et de suppression (RGPD).¶L'hébergeur de la page peut enregistrer des données techniques (comme l'adresse IP) selon sa propre politique.¶Éditeur : Junior Wandji.|This planner collects no personal data: there is no account, server or database.¶Your events, homework, subjects and notes are saved only in your browser's local storage (localStorage), on your device. The publisher can neither read nor retrieve them.¶No cookies, analytics or advertising trackers are used, and nothing is shared with third parties.¶To erase your data: delete items in the planner or clear the site data in your browser settings. This lets you exercise your rights of access, rectification and erasure (GDPR) directly.¶The page host may log technical data (such as the IP address) under its own policy.¶Publisher: Junior Wandji.
-cgx|En utilisant cet agenda, tu acceptes ces conditions.¶Service : un agenda étudiant gratuit (calendrier, devoirs, examens, emploi du temps, Pomodoro, notes), fourni tel quel, sans garantie de disponibilité ni d'absence d'erreurs.¶Tes données sont stockées sur ton appareil : si tu vides ton navigateur ou changes d'appareil, elles peuvent être perdues. L'éditeur n'est pas responsable d'une perte de données ni des décisions prises à partir de l'agenda (dates d'examen, échéances).¶Tu t'engages à ne pas détourner le site ni tenter de le perturber.¶Le site et son design appartiennent à Junior Wandji. Ces conditions peuvent évoluer ; la version affichée fait foi.|By using this planner, you accept these terms.¶Service: a free student planner (calendar, homework, exams, timetable, Pomodoro, notes), provided as is, with no guarantee of availability or of being error-free.¶Your data is stored on your device: if you clear your browser or switch devices, it may be lost. The publisher is not liable for data loss or for decisions based on the planner (exam dates, deadlines).¶You agree not to misuse or disrupt the site.¶The site and its design belong to Junior Wandji. These terms may change; the version shown prevails.`.split('\n'),T={fr:{},en:{}};
+cgx|En utilisant cet agenda, tu acceptes ces conditions.¶Service : un agenda étudiant gratuit (calendrier, devoirs, examens, emploi du temps, Pomodoro, notes), fourni tel quel, sans garantie de disponibilité ni d'absence d'erreurs.¶Tes données sont stockées sur ton appareil : si tu vides ton navigateur ou changes d'appareil, elles peuvent être perdues. L'éditeur n'est pas responsable d'une perte de données ni des décisions prises à partir de l'agenda (dates d'examen, échéances).¶Tu t'engages à ne pas détourner le site ni tenter de le perturber.¶Le site et son design appartiennent à Junior Wandji. Ces conditions peuvent évoluer ; la version affichée fait foi.|By using this planner, you accept these terms.¶Service: a free student planner (calendar, homework, exams, timetable, Pomodoro, notes), provided as is, with no guarantee of availability or of being error-free.¶Your data is stored on your device: if you clear your browser or switch devices, it may be lost. The publisher is not liable for data loss or for decisions based on the planner (exam dates, deadlines).¶You agree not to misuse or disrupt the site.¶The site and its design belong to Junior Wandji. These terms may change; the version shown prevails.
+home|Accueil|Home
+gr|Moyennes|Grades
+st|Statistiques|Stats
+set|Réglages|Settings
+hi|Bonjour 👋|Hello 👋
+ne|Nouvel événement|New event
+mf|Concentration|Focus
+ms|Pause courte|Short break
+ml|Pause longue|Long break
+kf|Concentration (min)|Focus (min)
+ks|Pause courte (min)|Short break (min)
+kl|Pause longue (min)|Long break (min)
+kn|Sessions avant pause longue|Sessions before long break
+snd|Son à la fin|Sound at end
+skp|Passer|Skip
+gv|Note|Score
+gm|Sur|Out of
+cf|Coef.|Weight
+ov|Moyenne générale|Overall average
+tmin|Minutes de concentration|Focus minutes
+tses|Sessions|Sessions
+trate|Tâches terminées|Tasks completed
+w7|7 derniers jours|Last 7 days
+bys|Par matière|By subject
+bk|Sauvegarde|Backup
+bkx|Exporte tes données pour les garder en sécurité ou les transférer vers un autre appareil ou un autre lien, puis importe-les ici.|Export your data to keep it safe or move it to another device or link, then import it here.
+exp|Exporter mes données|Export my data
+imp|Importer|Import
+rst|Tout effacer|Erase everything
+cfm|Tout effacer ? Cette action est définitive.|Erase everything? This cannot be undone.
+bad|Fichier invalide.|Invalid file.
+dng|Zone sensible|Danger zone`.split('\n'),T={fr:{},en:{}};
 D.forEach(l=>{const[a,b,c]=l.split('|');T.fr[a]=b;T.en[a]=c});
 const TC={cours:'#007A5E',exam:'#CE1126',rev:'#d4a900',rdv:'#3b82f6',perso:'#a855f7'},PI={h:'🔴',m:'🟠',l:'🟢'};
-const TABS=[['cal','📅'],['list','📋'],['hw','📝'],['ex','🎓'],['sch','🗓️'],['sub','🎨'],['pom','🍅'],['note','💡']];
+const TABS=[['home','🏠'],['cal','📅'],['list','📋'],['hw','📝'],['ex','🎓'],['sch','🗓️'],['sub','🎨'],['gr','🎯'],['pom','🍅'],['st','📈'],['note','💡'],['set','⚙️']];
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
 let S={l:'fr',th:'',ev:[],hw:[],sc:[],note:'',sub:[{id:1,n:'Mathématiques',c:'#007A5E'},{id:2,n:'Informatique',c:'#CE1126'},{id:3,n:'Anglais',c:'#d4a900'}]};
 try{Object.assign(S,JSON.parse(localStorage.getItem('agenda-cm')||'{}'))}catch(e){}
-let L=S.l,M=new Date(),sel=iso(new Date()),q='',tab='cal';
+let L=S.l,M=new Date(),sel=iso(new Date()),q='',tab='home';
 const sv=()=>{try{localStorage.setItem('agenda-cm',JSON.stringify(S))}catch(e){}};
 const ink=c=>{const[r,g,b]=[1,3,5].map(i=>parseInt(c.substr(i,2),16));return r*.299+g*.587+b*.114>150?"#111":"#fff"};
 const ts=m=>{const e=$("#ts");e.textContent=m;e.hidden=false;clearTimeout(ts.t);ts.t=setTimeout(()=>e.hidden=true,3500)};
@@ -184,7 +227,7 @@ const E=a=>a.length?a.map(evi).join(''):`<p class="em">${T[L].none}</p>`;
 function tr(){document.documentElement.lang=L;$$('[data-i]').forEach(e=>e.textContent=T[L][e.dataset.i]);$$('[data-p]').forEach(e=>(e.placeholder=T[L][e.dataset.p],e.setAttribute("aria-label",e.placeholder)));
 $('#tb').innerHTML=TABS.map(([k,i])=>`<button data-s="${k}" onclick="go('${k}')">${i} ${T[L][k]}</button>`).join('');go(tab);
 fill('#ty',Object.keys(TC).map(k=>[k,T[L][k]]));fill('#pr',['h','m','l'].map(k=>[k,PI[k]+' '+T[L]['p'+k]]));fill('#dy',wk('long').map((w,i)=>[i,w]));
-$('#bl').textContent=L=='fr'?'EN':'FR';pd()}
+$('#bl').textContent=L=='fr'?'EN':'FR';pui()}
 function R(){
 const td=iso(new Date()),ex=srt(S.ev.filter(e=>e.ty=='exam'&&e.d>=td),'d'),y=M.getFullYear(),m=M.getMonth();
 $('#s1').textContent=S.ev.length;$('#s2').textContent=S.ev.filter(e=>e.done).length+S.hw.filter(e=>e.done).length;$('#s3').textContent=ex.length;
@@ -201,9 +244,9 @@ $('#xl').innerHTML=ex.length?ex.map(e=>{const n=dl(e.d);return `<div class="it" 
 const dn=wk('long');
 $('#sl').innerHTML=dn.map((w,i)=>`<div class="sd"><h3>${w}</h3>${S.sc.filter(x=>x.day==i).sort((a,b)=>a.a.localeCompare(b.a)).map(x=>{const s=sb(x.s);return `<div class="it" style="border-left-color:${s.c}"><div class="gr"><b>${esc(s.n)}</b><small>${x.a}–${x.b}${x.r?' · '+esc(x.r):''}</small></div><button class="x" onclick="rm('sc',${x.id})">×</button></div>`}).join('')}</div>`).join('');
 $('#bl2').innerHTML=S.sub.map(s=>`<div class="it" style="border-left-color:${s.c}"><div class="gr"><b>${esc(s.n)}</b></div><span class="tag" style="background:${s.c}">&nbsp;</span><button class="x" onclick="rm('sub',${s.id})">×</button></div>`).join('');
-$$('.ss').forEach(e=>{const v=e.value;e.innerHTML=S.sub.map(s=>`<option value="${s.id}">${esc(s.n)}</option>`).join('');if(v)e.value=v});
-if(!$('#d').value)$('#d').value=sel}
-const fm=(id,k)=>$(id).onsubmit=e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target));for(const x in o)o[x]=String(o[x]).trim();if(('t' in o&&!o.t)||('n' in o&&!o.n)||(o.a&&o.b&&o.b<=o.a)){ts(T[L].inv);return}S[k].push({id:Date.now(),done:false,...o});e.target.reset();sv();R();if(k=='sub')R()};
+$$('.ss').forEach(e=>{const v=e.value;e.innerHTML=(e.id=='ps0'?'<option value="">—</option>':'')+S.sub.map(s=>`<option value="${s.id}">${esc(s.n)}</option>`).join('');if(v)e.value=v});
+if(!$('#d').value)$('#d').value=sel;Rx(td,ex)}
+const fm=(id,k)=>$(id).onsubmit=e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target));for(const x in o)o[x]=String(o[x]).trim();['v','mx','cf'].forEach(f=>{if(f in o)o[f]=+o[f]});if(('t' in o&&!o.t)||('n' in o&&!o.n)||(o.a&&o.b&&o.b<=o.a)||o.v>o.mx||o.mx<=0){ts(T[L].inv);return}S[k].push({id:Date.now(),done:false,...o});e.target.reset();sv();R();if(k=='sub')R()};
 fm('#fe','ev');fm('#fh','hw');fm('#fs','sc');fm('#fu','sub');
 $('#q').oninput=e=>{q=e.target.value.trim();if(q)go('list');R()};
 $('#bl').onclick=()=>{L=S.l=L=='fr'?'en':'fr';sv();tr();R()};
@@ -211,11 +254,35 @@ $('#bt').onclick=()=>{const d=document.documentElement,dk=d.dataset.theme=='dark
 $('#bp').onclick=()=>print();
 $('#nt').value=S.note;$('#nt').oninput=e=>{S.note=e.target.value;sv()};
 if(S.th)document.documentElement.dataset.theme=S.th;
-let pmd=0,ps=1500,pi=null;
-function pd(){$('#pt').textContent=String(ps/60|0).padStart(2,'0')+':'+String(ps%60).padStart(2,'0');$('#pl').textContent=T[L][pmd?'brk':'work'];$('#p1').textContent=T[L][pi?'stop':'go'];$('#p2').textContent=T[L].rs;$('#pl').style.background=pmd?'var(--r)':'var(--g)'}
-$('#p1').onclick=()=>{if(pi){clearInterval(pi);pi=null}else pi=setInterval(()=>{if(--ps<=0){pmd=1-pmd;ps=pmd?300:1500;try{navigator.vibrate(400)}catch(e){}}pd()},1000);pd()};
-$('#p2').onclick=()=>{clearInterval(pi);pi=null;pmd=0;ps=1500;pd()};
+S.cf=Object.assign({f:25,s:5,l:15,n:4,snd:1},S.cf);S.pm=S.pm||{};S.ps=S.ps||{};S.gr=S.gr||[];
+const T0=document.title;let pmd='f',pn=0,pi=null,pe=0,pr=S.cf.f*60,pt0=pr,wl,ac;
+function pset(m){clearInterval(pi);pi=null;try{wl&&wl.release()}catch(e){}pmd=m;pr=pt0=S.cf[m]*60;pui()}
+function pui(){$('#pmm').innerHTML=['f','s','l'].map(m=>`<button class="${m==pmd?'on':''}" onclick="pset('${m}')">${T[L]['m'+m]}</button>`).join('');$('#p1').textContent=T[L][pi?'stop':'go'];$('#psk').textContent=T[L].skp;$('#p2').textContent=T[L].rs;pd()}
+function pd(){const tx=String(pr/60|0).padStart(2,'0')+':'+String(pr%60).padStart(2,'0'),t=S.pm[iso(new Date())]||{m:0,n:0};$('#pt').textContent=tx;$('#rf').style.strokeDashoffset=339.3*(1-pr/pt0);$('#rf').classList.toggle('b',pmd!='f');$('#pc').textContent='🍅 '+t.n+' · '+t.m+' min';document.title=(pi?tx+' · ':'')+T0}
+function pgo(){try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();ac.resume()}catch(e){}
+if(pi){clearInterval(pi);pi=null;pr=Math.max(0,Math.round((pe-Date.now())/1000));try{wl&&wl.release()}catch(e){}}
+else{pe=Date.now()+pr*1000;pi=setInterval(ptick,250);try{navigator.wakeLock.request('screen').then(w=>wl=w).catch(()=>{})}catch(e){}}pui()}
+function ptick(){pr=Math.max(0,Math.round((pe-Date.now())/1000));if(pr<=0)pdone();else pd()}
+function beep(){if(!S.cf.snd||!ac)return;try{const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.connect(g);g.connect(ac.destination);o.frequency.value=880;g.gain.setValueAtTime(.25,t);g.gain.exponentialRampToValueAtTime(.001,t+1.2);o.start();o.stop(t+1.2)}catch(e){}}
+function pdone(){if(pmd=='f'){const k=iso(new Date()),d=S.pm[k]||(S.pm[k]={m:0,n:0}),s=$('#ps0').value;d.m=(+d.m||0)+S.cf.f;d.n=(+d.n||0)+1;if(s)S.ps[s]=(+S.ps[s]||0)+S.cf.f;pn++;sv();R()}
+beep();try{navigator.vibrate([300,100,300])}catch(e){}pset(pmd=='f'?(pn%S.cf.n==0?'l':'s'):'f')}
+$('#p1').onclick=pgo;$('#psk').onclick=()=>pset(pmd=='f'?'s':'f');$('#p2').onclick=()=>pset(pmd);
+$$('[data-k]').forEach(e=>{const k=e.dataset.k;if(e.type=='checkbox')e.checked=!!S.cf.snd;else e.value=S.cf[k];e.onchange=()=>{S.cf[k]=e.type=='checkbox'?+e.checked:Math.min(180,Math.max(1,Math.round(+e.value)||1));if(e.type!='checkbox')e.value=S.cf[k];sv();if(!pi)pset(pmd)}});
+fm('#fg','gr');
+function Rx(td,ex){
+const pt=S.pm[td]||{m:0,n:0},nx=ex[0],hd=srt(S.hw.filter(x=>!x.done),'d').slice(0,3),nn=`<p class="em">${T[L].none}</p>`;
+$('#hm').innerHTML=`<div class="card"><h2>${T[L].hi}</h2><h3 style="text-transform:capitalize">${new Date().toLocaleDateString(L,{weekday:'long',day:'numeric',month:'long'})}</h3><p style="margin:6px 0 10px">🍅 ${pt.n} · ${pt.m} min</p><button class="btn" onclick="go('cal')">＋ ${T[L].ne}</button></div><div class="card"><h2>${T[L].td}</h2>${E(srt(S.ev.filter(e=>e.d==td),'d'))}</div><div class="card"><h2>${T[L].ex}</h2>${nx?`<div class="it" style="border-left-color:var(--r)"><div class="cd ${dl(nx.d)<=7?'u':''}">${dl(nx.d)?(L=='fr'?'J-':'D-')+dl(nx.d):T[L].td}</div><div class="gr"><b>${esc(nx.t)}</b><small>${fd(nx.d)}</small></div></div>`:nn}</div><div class="card"><h2>${T[L].hw}</h2>${hd.length?hd.map(x=>{const s=sb(x.s);return `<div class="it" style="border-left-color:${s.c}"><div class="gr"><b>${esc(x.t)}</b><small>${fd(x.d)}</small></div><span class="tag" style="background:${s.c};color:${ink(s.c)}">${esc(s.n)}</span></div>`}).join(''):nn}</div>`;
+const gv=g=>g.mx>0?g.v/g.mx*20:0,av=a=>a.reduce((t,x)=>t+gv(x)*x.cf,0)/(a.reduce((t,x)=>t+(+x.cf),0)||1),gp=S.sub.map(s=>({s,g:S.gr.filter(x=>x.s==s.id)})).filter(x=>x.g.length),ov=S.gr.length?av(S.gr):0,cl=v=>v>=10?'var(--g)':'var(--r)';
+$('#gl').innerHTML=S.gr.length?`<div class="card"><h2>${T[L].ov}</h2><div class="cd" style="background:${cl(ov)};display:inline-block">${ov.toFixed(2)}/20</div></div>`+gp.map(({s,g})=>`<div class="card"><h2 style="display:flex;justify-content:space-between"><span>${esc(s.n)}</span><span style="color:${cl(av(g))}">${av(g).toFixed(2)}/20</span></h2>`+g.map(x=>`<div class="it" style="border-left-color:${s.c}"><div class="gr"><b>${esc(x.t)}</b><small>${x.v}/${x.mx} · ${T[L].cf} ${x.cf}</small></div><button class="x" onclick="rm('gr',${x.id})">×</button></div>`).join('')+'</div>').join(''):nn;
+const days=[6,5,4,3,2,1,0].map(i=>{const d=new Date();d.setDate(d.getDate()-i);return[wk('short')[(d.getDay()+6)%7],+(S.pm[iso(d)]||{}).m||0]}),mx=Math.max(30,...days.map(x=>x[1])),tot=Object.values(S.pm).reduce((t,x)=>[t[0]+(+x.m||0),t[1]+(+x.n||0)],[0,0]),all=S.ev.length+S.hw.length,dn=S.ev.filter(e=>e.done).length+S.hw.filter(e=>e.done).length,pm=Math.max(1,...Object.values(S.ps).map(Number));
+$('#stl').innerHTML=`<div class="stats"><div><b>${tot[0]}</b>${T[L].tmin}</div><div><b>${tot[1]}</b>${T[L].tses}</div><div><b>${all?Math.round(dn/all*100):0}%</b>${T[L].trate}</div></div><div class="card"><h2>${T[L].w7}</h2><div class="bars">${days.map(([l,m])=>`<div title="${m} min"><small>${m||''}</small><span style="height:${m/mx*80}%"></span><small>${l}</small></div>`).join('')}</div></div><div class="card"><h2>${T[L].bys}</h2>${S.sub.filter(s=>S.ps[s.id]).map(s=>`<div class="it" style="border-left-color:${s.c}"><div class="gr"><b>${esc(s.n)}</b><small>${S.ps[s.id]} min</small></div><div class="pb"><i style="width:${Math.min(100,S.ps[s.id]/pm*100)}%;background:${s.c}"></i></div></div>`).join('')||nn}</div>`}
+function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='agenda-sauvegarde-'+iso(new Date())+'.json';a.click()}
+const san=o=>{for(const k of ['ev','hw','sc','sub','gr'])o[k]=(Array.isArray(o[k])?o[k]:[]).filter(x=>x&&typeof x=='object').map(x=>{x.id=+x.id||Date.now()+Math.random();['a','b','h','d'].forEach(f=>{if(f in x)x[f]=String(x[f]).replace(/[^0-9:-]/g,'')});['ty','pr','s','day'].forEach(f=>{if(f in x)x[f]=String(x[f]).replace(/\W/g,'')});if('c' in x&&!/^#[0-9a-f]{6}$/i.test(x.c))x.c='#888888';['v','mx','cf'].forEach(f=>{if(f in x)x[f]=+x[f]||0});return x});return o};
+$('#im').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o||!Array.isArray(o.ev))throw 0;S=Object.assign(S,san(o));S.note=String(S.note||'');sv();location.reload()}catch(x){ts(T[L].bad)}};r.readAsText(f)};
 tr();R();
-$$('[data-d]').forEach(b=>b.onclick=()=>{$('#dh').textContent=T[L][b.dataset.d+'t'];$('#db').innerHTML=T[L][b.dataset.d+'x'].split('¶').map(x=>'<p>'+x+'</p>').join('');$('#dg').showModal()});
-$('#ck').hidden=!!S.ck;$('#ok').onclick=()=>{S.ck=1;sv();$('#ck').hidden=true};
+$$('[data-d]').forEach(b=>b.onclick=()=>{$('#dh').textContent=T[L][b.dataset.d+'t'];$('#db').innerHTML=T[L][b.dataset.d+'x'].split('¶').map(x=>'<p>'+x+'</p>').join('');$('#dg').showModal();try{history.pushState({d:1},'')}catch(e){}});
+$('#dg').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
+addEventListener('popstate',()=>{if($('#dg').open)$('#dg').close()});
+$('#dg').addEventListener('close',()=>{if(history.state&&history.state.d)history.back()});
+$('#ck').hidden=!!S.ck;document.body.classList.toggle('hasck',!S.ck);$('#ok').onclick=()=>{S.ck=1;sv();$('#ck').hidden=true;document.body.classList.remove('hasck')};
 </script></body></html>
