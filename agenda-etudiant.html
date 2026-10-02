@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mon Agenda Étudiant – Calendrier, devoirs, examens, Pomodoro</title>
+<meta name="description" content="Agenda étudiant gratuit : calendrier, devoirs, examens avec compte à rebours, emploi du temps, Pomodoro et notes. Données privées, stockées sur ton appareil.">
+<meta name="theme-color" content="#007A5E"><meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:title" content="Mon Agenda Étudiant"><meta property="og:description" content="Calendrier, devoirs, examens, emploi du temps et Pomodoro pour étudiants."><meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FCD116' stroke='%23007A5E' d='M12 1.5l3 6.9 7.5.7-5.7 5 1.7 7.4L12 17.5 5.5 21.5l1.7-7.4-5.7-5 7.5-.7z'/%3E%3C/svg%3E">
+<script>if(location.protocol=='http:'&&!/^(localhost|127\.)/.test(location.hostname))location.replace(location.href.replace('http:','https:'))</script>
+<style>
+:root{--g:#007A5E;--r:#CE1126;--y:#FCD116;--bg:#f3f6f4;--c:#fff;--t:#14211b;--m:#62736b;--b:#dce5e0;--k:#7a6400;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1411;--c:#16201b;--t:#e8f0ec;--m:#93a39b;--b:#26332d;--k:#FCD116}}
+:root[data-theme=dark]{--bg:#0d1411;--c:#16201b;--t:#e8f0ec;--m:#93a39b;--b:#26332d;--k:#FCD116}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{font:15px/1.5 Georgia,'Times New Roman',serif;background:var(--bg);color:var(--t);transition:background .3s,color .3s}
+button,input,select,textarea{font:14px system-ui,-apple-system,Segoe UI,sans-serif;color:var(--t)}
+h1,h2,h3{font-family:Georgia,serif}
+.flag{height:6px;background:linear-gradient(90deg,var(--g) 33.3%,var(--r) 33.3% 66.6%,var(--y) 66.6%)}
+.sbg{position:fixed;right:-50px;bottom:-40px;width:280px;fill:var(--y);opacity:.07;pointer-events:none}
+.wrap{max-width:980px;margin:auto;padding:12px}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:6px 0 12px}
+h1{font-size:24px;display:flex;align-items:center;gap:8px}
+.st{width:22px;fill:var(--y);stroke:#c9a400;stroke-width:.8}
+.hb{display:flex;gap:6px;flex:1;justify-content:flex-end;min-width:220px}
+.hb input{flex:1;min-width:0}
+input,select,textarea{background:var(--c);border:1px solid var(--b);border-radius:9px;padding:8px 10px;width:100%}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--y);outline-offset:1px}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--g);flex:none}
+input[type=color]{padding:2px;height:36px}
+.ib{background:var(--c);border:1px solid var(--b);border-radius:9px;padding:6px 10px;cursor:pointer;font-weight:700}
+.btn{background:var(--g);color:#fff;border:0;border-radius:9px;padding:9px 14px;cursor:pointer;font-weight:600;transition:transform .15s,background .2s}
+.btn:hover{background:#006149}.btn:active{transform:scale(.96)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.stats div{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:8px 12px;font:12px system-ui,sans-serif;color:var(--m)}
+.stats b{display:block;font:700 26px Georgia,serif;color:var(--g)}
+.stats div:nth-child(2) b{color:var(--k)}.stats div:nth-child(3) b{color:var(--r)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px}
+.tabs button{white-space:nowrap;background:var(--c);border:1px solid var(--b);border-radius:20px;padding:7px 13px;cursor:pointer;transition:.2s}
+.tabs button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.sec{display:none}.sec.on{display:block;animation:in .3s}
+@keyframes in{from{opacity:0;transform:translateY(5px)}}
+.card{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:14px;margin-bottom:12px}
+h2{font-size:19px;margin-bottom:8px}h3{font-size:15px;margin-bottom:4px}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;align-items:end}
+label{display:grid;gap:2px;font:12px system-ui,sans-serif;color:var(--m)}
+.cn{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;text-transform:capitalize}
+.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.wd{text-align:center;font:600 12px system-ui;color:var(--m);text-transform:capitalize}
+.day{aspect-ratio:1;border:1px solid var(--b);border-radius:10px;padding:4px;cursor:pointer;font:13px system-ui;display:flex;flex-direction:column;justify-content:space-between;transition:.2s}
+.day:hover{border-color:var(--g)}.day.td{background:var(--g);color:#fff}.day.sl{outline:2px solid var(--y)}
+.day i{display:flex;gap:2px;flex-wrap:wrap}.day u{width:6px;height:6px;border-radius:50%}
+.it{display:flex;align-items:center;gap:10px;padding:9px 10px;border-left:4px solid var(--g);background:var(--bg);border-radius:10px;margin:6px 0;transition:.2s}
+.gr{flex:1;min-width:0}.gr small{display:block;color:var(--m);font-family:system-ui,sans-serif}
+.dn b{text-decoration:line-through;opacity:.5}
+.tag{color:#fff;border-radius:12px;padding:1px 9px;font:12px system-ui;white-space:nowrap}
+.x{background:none;border:0;color:var(--m);font-size:20px;cursor:pointer}.x:hover{color:var(--r)}
+.em{color:var(--m);font-style:italic;padding:6px 0}
+.cd{font:800 17px Georgia;color:#fff;background:var(--g);border-radius:10px;padding:6px 10px;min-width:64px;text-align:center}.cd.u{background:var(--r)}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.sd{background:var(--bg);border-radius:10px;padding:8px}.sd h3{text-transform:capitalize}
+.sd .it{background:var(--c);flex-wrap:wrap;font-size:13px}
+.pm{text-align:center;padding:20px}.pm .tm{font:800 76px/1 Georgia;color:var(--g);letter-spacing:2px}
+.pm .bt{display:flex;gap:8px;justify-content:center;margin-top:14px}
+textarea{min-height:240px;resize:vertical}
+footer{text-align:center;color:var(--m);padding:18px 0 8px;font-style:italic}
+footer svg{width:12px;fill:var(--y);vertical-align:-1px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.hb,.tabs,form,.x,.pm,.sbg,.cn button,input[type=checkbox]{display:none!important}.sec{display:block!important;break-inside:avoid}body{background:#fff;color:#000}.card{border-color:#999}}
+.lk{background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit}
+.ck{position:fixed;left:0;right:0;bottom:0;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--c);border-top:3px solid var(--y);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));font:13px system-ui,sans-serif;z-index:5}.ck[hidden],#ts[hidden]{display:none}
+#ts{position:fixed;left:50%;transform:translateX(-50%);bottom:80px;background:var(--r);color:#fff;border-radius:10px;padding:8px 14px;font:13px system-ui;z-index:9;max-width:90%}
+dialog{max-width:560px;width:calc(100% - 24px);max-height:85vh;overflow:auto;border:1px solid var(--b);border-radius:14px;background:var(--c);color:var(--t);padding:16px}dialog::backdrop{background:#0009}dialog p{margin:8px 0}
+@media print{.ck,#ts,footer .lk{display:none!important}}
+</style></head><body>
+<div class="flag"></div>
+<svg aria-hidden="true" class="sbg" viewBox="0 0 24 24"><path d="M12 1.5l3 6.9 7.5.7-5.7 5 1.7 7.4L12 17.5 5.5 21.5l1.7-7.4-5.7-5 7.5-.7z"/></svg>
+<div class="wrap">
+<header><h1><svg aria-hidden="true" class="st" viewBox="0 0 24 24"><path d="M12 1.5l3 6.9 7.5.7-5.7 5 1.7 7.4L12 17.5 5.5 21.5l1.7-7.4-5.7-5 7.5-.7z"/></svg><span data-i="title"></span></h1>
+<div class="hb"><input id="q" type="search" data-p="search"><button class="ib" id="bl">EN</button><button class="ib" id="bt" aria-label="Thème / Theme">🌓</button><button class="ib" id="bp" title="PDF">🖨️ PDF</button></div></header>
+<div class="stats"><div><b id="s1">0</b><span data-i="s1"></span></div><div><b id="s2">0</b><span data-i="s2"></span></div><div><b id="s3">0</b><span data-i="s3"></span></div></div>
+<nav class="tabs" id="tb"></nav>
+
+<section class="sec on" id="cal"><div class="card"><div class="cn"><button class="ib" onclick="mv(-1)" aria-label="Précédent / Previous">‹</button><h2 id="mt"></h2><button class="ib" onclick="mv(1)" aria-label="Suivant / Next">›</button></div><div class="cg" id="cg"></div></div>
+<div class="card" id="dl"></div>
+<form class="card f" id="fe"><label><span data-i="t"></span><input name="t" required maxlength="80"></label><label><span data-i="d"></span><input id="d" type="date" name="d" required></label><label><span data-i="h"></span><input type="time" name="h"></label><label><span data-i="p"></span><input name="p" maxlength="60"></label><label><span data-i="ty"></span><select id="ty" name="ty"></select></label><label><span data-i="pr"></span><select id="pr" name="pr"></select></label><button class="btn">＋ <span data-i="add"></span></button></form></section>
+
+<section class="sec" id="list"><div class="card"><h2 data-i="list"></h2><div id="ul"></div></div></section>
+
+<section class="sec" id="hw"><form class="card f" id="fh"><label><span data-i="t"></span><input name="t" required maxlength="80"></label><label><span data-i="s"></span><select class="ss" name="s"></select></label><label><span data-i="due"></span><input type="date" name="d" required></label><button class="btn">＋ <span data-i="add"></span></button></form><div class="card"><h2 data-i="hw"></h2><div id="hl"></div></div></section>
+
+<section class="sec" id="ex"><div class="card"><h2 data-i="ex"></h2><div id="xl"></div></div></section>
+
+<section class="sec" id="sch"><form class="card f" id="fs"><label><span data-i="day"></span><select id="dy" name="day"></select></label><label><span data-i="a"></span><input type="time" name="a" required></label><label><span data-i="b"></span><input type="time" name="b" required></label><label><span data-i="s"></span><select class="ss" name="s"></select></label><label><span data-i="r"></span><input name="r" maxlength="30"></label><button class="btn">＋ <span data-i="add"></span></button></form><div class="card"><h2 data-i="sch"></h2><div class="sg" id="sl"></div></div></section>
+
+<section class="sec" id="sub"><form class="card f" id="fu"><label><span data-i="n"></span><input name="n" required maxlength="40"></label><label><span data-i="co"></span><input type="color" name="c" value="#007A5E"></label><button class="btn">＋ <span data-i="add"></span></button></form><div class="card"><h2 data-i="sub"></h2><div id="bl2"></div></div></section>
+
+<section class="sec" id="pom"><div class="card pm"><div class="tag" id="pl" style="display:inline-block;background:var(--g)"></div><div class="tm" id="pt">25:00</div><div class="bt"><button class="btn" id="p1"></button><button class="ib" id="p2"></button></div></div></section>
+
+<section class="sec" id="note"><div class="card"><h2 data-i="note"></h2><textarea id="nt" data-p="nph"></textarea></div></section>
+<footer><div><button class="lk" data-d="pv" data-i="pvt"></button> · <button class="lk" data-d="cg" data-i="cgt"></button></div>by Junior Wandji <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.5l3 6.9 7.5.7-5.7 5 1.7 7.4L12 17.5 5.5 21.5l1.7-7.4-5.7-5 7.5-.7z"/></svg></footer>
+<div class="ck" id="ck" role="region" aria-label="Cookies"><span data-i="ckx"></span><button class="lk" data-d="pv" data-i="pvt"></button><button class="btn" id="ok" data-i="ok"></button></div>
+<div id="ts" role="status" hidden></div>
+<dialog id="dg"><h2 id="dh"></h2><div id="db"></div><form method="dialog"><button class="btn" data-i="cl"></button></form></dialog>
+</div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const D=`title|Mon Agenda Étudiant|My Student Planner
+cal|Calendrier|Calendar
+list|À venir|Upcoming
+hw|Devoirs & Travaux|Homework
+ex|Examens|Exams
+sch|Emploi du temps|Timetable
+sub|Matières|Subjects
+pom|Pomodoro|Pomodoro
+note|Bloc-notes|Notes
+search|Rechercher un événement…|Search events…
+s1|Événements|Events
+s2|Tâches terminées|Tasks done
+s3|Examens à venir|Upcoming exams
+t|Titre|Title
+d|Date|Date
+h|Heure|Time
+p|Lieu|Place
+ty|Type|Type
+pr|Priorité|Priority
+add|Ajouter|Add
+cours|Cours|Class
+exam|Examen|Exam
+rev|Révision|Revision
+rdv|Rendez-vous|Appointment
+perso|Perso|Personal
+ph|Haute|High
+pm|Moyenne|Medium
+pl|Basse|Low
+s|Matière|Subject
+due|Date limite|Due date
+day|Jour|Day
+a|Début|Start
+b|Fin|End
+r|Salle|Room
+n|Nom|Name
+co|Couleur|Color
+none|Rien pour le moment.|Nothing yet.
+td|Aujourd'hui|Today
+work|Temps de travail|Focus time
+brk|Pause|Break
+go|Démarrer|Start
+stop|Pause|Pause
+rs|Réinitialiser|Reset
+nph|Tes idées, rappels, listes…|Your ideas, reminders, lists…
+pvt|Confidentialité & RGPD|Privacy & GDPR
+cgt|Conditions d'utilisation|Terms of use
+cl|Fermer|Close
+ok|Compris|Got it
+ckx|Aucun cookie ici : tes données restent dans ton navigateur.|No cookies here: your data stays in your browser.
+inv|Vérifie les champs : titre rempli, heure de fin après le début.|Check the fields: title filled, end time after start.
+pvx|Cet agenda ne collecte aucune donnée personnelle : il n'y a ni compte, ni serveur, ni base de données.¶Tes événements, devoirs, matières et notes sont enregistrés uniquement dans le stockage local de ton navigateur (localStorage), sur ton appareil. L'éditeur ne peut ni les lire ni les récupérer.¶Aucun cookie, aucun outil de mesure d'audience et aucun traceur publicitaire ne sont utilisés, et rien n'est transmis à des tiers.¶Pour effacer tes données : supprime les éléments dans l'agenda ou vide les données du site dans les réglages de ton navigateur. Tu exerces ainsi directement tes droits d'accès, de rectification et de suppression (RGPD).¶L'hébergeur de la page peut enregistrer des données techniques (comme l'adresse IP) selon sa propre politique.¶Éditeur : Junior Wandji.|This planner collects no personal data: there is no account, server or database.¶Your events, homework, subjects and notes are saved only in your browser's local storage (localStorage), on your device. The publisher can neither read nor retrieve them.¶No cookies, analytics or advertising trackers are used, and nothing is shared with third parties.¶To erase your data: delete items in the planner or clear the site data in your browser settings. This lets you exercise your rights of access, rectification and erasure (GDPR) directly.¶The page host may log technical data (such as the IP address) under its own policy.¶Publisher: Junior Wandji.
+cgx|En utilisant cet agenda, tu acceptes ces conditions.¶Service : un agenda étudiant gratuit (calendrier, devoirs, examens, emploi du temps, Pomodoro, notes), fourni tel quel, sans garantie de disponibilité ni d'absence d'erreurs.¶Tes données sont stockées sur ton appareil : si tu vides ton navigateur ou changes d'appareil, elles peuvent être perdues. L'éditeur n'est pas responsable d'une perte de données ni des décisions prises à partir de l'agenda (dates d'examen, échéances).¶Tu t'engages à ne pas détourner le site ni tenter de le perturber.¶Le site et son design appartiennent à Junior Wandji. Ces conditions peuvent évoluer ; la version affichée fait foi.|By using this planner, you accept these terms.¶Service: a free student planner (calendar, homework, exams, timetable, Pomodoro, notes), provided as is, with no guarantee of availability or of being error-free.¶Your data is stored on your device: if you clear your browser or switch devices, it may be lost. The publisher is not liable for data loss or for decisions based on the planner (exam dates, deadlines).¶You agree not to misuse or disrupt the site.¶The site and its design belong to Junior Wandji. These terms may change; the version shown prevails.`.split('\n'),T={fr:{},en:{}};
+D.forEach(l=>{const[a,b,c]=l.split('|');T.fr[a]=b;T.en[a]=c});
+const TC={cours:'#007A5E',exam:'#CE1126',rev:'#d4a900',rdv:'#3b82f6',perso:'#a855f7'},PI={h:'🔴',m:'🟠',l:'🟢'};
+const TABS=[['cal','📅'],['list','📋'],['hw','📝'],['ex','🎓'],['sch','🗓️'],['sub','🎨'],['pom','🍅'],['note','💡']];
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
+let S={l:'fr',th:'',ev:[],hw:[],sc:[],note:'',sub:[{id:1,n:'Mathématiques',c:'#007A5E'},{id:2,n:'Informatique',c:'#CE1126'},{id:3,n:'Anglais',c:'#d4a900'}]};
+try{Object.assign(S,JSON.parse(localStorage.getItem('agenda-cm')||'{}'))}catch(e){}
+let L=S.l,M=new Date(),sel=iso(new Date()),q='',tab='cal';
+const sv=()=>{try{localStorage.setItem('agenda-cm',JSON.stringify(S))}catch(e){}};
+const ink=c=>{const[r,g,b]=[1,3,5].map(i=>parseInt(c.substr(i,2),16));return r*.299+g*.587+b*.114>150?"#111":"#fff"};
+const ts=m=>{const e=$("#ts");e.textContent=m;e.hidden=false;clearTimeout(ts.t);ts.t=setTimeout(()=>e.hidden=true,3500)};
+const sb=id=>S.sub.find(s=>s.id==id)||{n:'?',c:'#888'};
+const dl=d=>Math.round((new Date(d+'T00:00')-new Date(new Date().toDateString()))/864e5);
+const fd=d=>new Date(d+'T00:00').toLocaleDateString(L,{weekday:'short',day:'numeric',month:'short'});
+const srt=(a,k)=>a.slice().sort((x,y)=>(x[k]+(x.h||'')).localeCompare(y[k]+(y.h||'')));
+const wk=f=>[0,1,2,3,4,5,6].map(i=>new Date(2024,0,1+i).toLocaleDateString(L,{weekday:f}));
+function tg(k,id){const o=S[k].find(x=>x.id==id);o.done=!o.done;sv();R()}
+function rm(k,id){S[k]=S[k].filter(x=>x.id!=id);sv();R()}
+function pick(s){sel=s;$('#d').value=s;R()}
+function mv(n){M=new Date(M.getFullYear(),M.getMonth()+n,1);R()}
+function go(k){tab=k;$$('.sec').forEach(s=>s.classList.toggle('on',s.id==k));$$('#tb button').forEach(b=>b.classList.toggle('on',b.dataset.s==k))}
+const fill=(id,a)=>{const e=$(id),v=e.value;e.innerHTML=a.map(([k,l])=>`<option value="${k}">${l}</option>`).join('');if(v)e.value=v};
+const evi=e=>`<div class="it ${e.done?'dn':''}" style="border-left-color:${TC[e.ty]}"><input type="checkbox" ${e.done?'checked':''} onchange="tg('ev',${e.id})"><div class="gr"><b>${esc(e.t)}</b><small>${fd(e.d)}${e.h?' · '+e.h:''}${e.p?' · 📍'+esc(e.p):''}</small></div><span class="tag" style="background:${TC[e.ty]};color:${ink(TC[e.ty])}">${T[L][e.ty]}</span><span title="${T[L]['p'+e.pr]}">${PI[e.pr]}</span><button class="x" onclick="rm('ev',${e.id})">×</button></div>`;
+const E=a=>a.length?a.map(evi).join(''):`<p class="em">${T[L].none}</p>`;
+function tr(){document.documentElement.lang=L;$$('[data-i]').forEach(e=>e.textContent=T[L][e.dataset.i]);$$('[data-p]').forEach(e=>(e.placeholder=T[L][e.dataset.p],e.setAttribute("aria-label",e.placeholder)));
+$('#tb').innerHTML=TABS.map(([k,i])=>`<button data-s="${k}" onclick="go('${k}')">${i} ${T[L][k]}</button>`).join('');go(tab);
+fill('#ty',Object.keys(TC).map(k=>[k,T[L][k]]));fill('#pr',['h','m','l'].map(k=>[k,PI[k]+' '+T[L]['p'+k]]));fill('#dy',wk('long').map((w,i)=>[i,w]));
+$('#bl').textContent=L=='fr'?'EN':'FR';pd()}
+function R(){
+const td=iso(new Date()),ex=srt(S.ev.filter(e=>e.ty=='exam'&&e.d>=td),'d'),y=M.getFullYear(),m=M.getMonth();
+$('#s1').textContent=S.ev.length;$('#s2').textContent=S.ev.filter(e=>e.done).length+S.hw.filter(e=>e.done).length;$('#s3').textContent=ex.length;
+$('#mt').textContent=M.toLocaleDateString(L,{month:'long',year:'numeric'});
+let h=wk('short').map(w=>`<div class="wd">${w}</div>`).join('')+'<div></div>'.repeat((new Date(y,m,1).getDay()+6)%7);
+for(let i=1,n=new Date(y,m+1,0).getDate();i<=n;i++){const s=iso(new Date(y,m,i));
+h+=`<div class="day ${s==td?'td':''} ${s==sel?'sl':''}" onclick="pick('${s}')">${i}<i>${S.ev.filter(e=>e.d==s).slice(0,4).map(e=>`<u style="background:${TC[e.ty]}"></u>`).join('')}</i></div>`}
+$('#cg').innerHTML=h;
+$('#dl').innerHTML=`<h3>${fd(sel)}</h3>`+E(srt(S.ev.filter(e=>e.d==sel),'d'));
+const k=q.toLowerCase();
+$('#ul').innerHTML=E(srt(S.ev.filter(e=>k?(e.t+' '+e.p).toLowerCase().includes(k):e.d>=td),'d'));
+$('#hl').innerHTML=S.hw.length?srt(S.hw,'d').map(x=>{const s=sb(x.s),n=dl(x.d);return `<div class="it ${x.done?'dn':''}" style="border-left-color:${s.c}"><input type="checkbox" ${x.done?'checked':''} onchange="tg('hw',${x.id})"><div class="gr"><b>${esc(x.t)}</b><small style="${n<0&&!x.done?'color:var(--r)':''}">${fd(x.d)}</small></div><span class="tag" style="background:${s.c};color:${ink(s.c)}">${esc(s.n)}</span><button class="x" onclick="rm('hw',${x.id})">×</button></div>`}).join(''):`<p class="em">${T[L].none}</p>`;
+$('#xl').innerHTML=ex.length?ex.map(e=>{const n=dl(e.d);return `<div class="it" style="border-left-color:var(--r)"><div class="cd ${n<=7?'u':''}">${n?(L=='fr'?'J-':'D-')+n:T[L].td}</div><div class="gr"><b>${esc(e.t)}</b><small>${fd(e.d)}${e.h?' · '+e.h:''}${e.p?' · 📍'+esc(e.p):''}</small></div><button class="x" onclick="rm('ev',${e.id})">×</button></div>`}).join(''):`<p class="em">${T[L].none}</p>`;
+const dn=wk('long');
+$('#sl').innerHTML=dn.map((w,i)=>`<div class="sd"><h3>${w}</h3>${S.sc.filter(x=>x.day==i).sort((a,b)=>a.a.localeCompare(b.a)).map(x=>{const s=sb(x.s);return `<div class="it" style="border-left-color:${s.c}"><div class="gr"><b>${esc(s.n)}</b><small>${x.a}–${x.b}${x.r?' · '+esc(x.r):''}</small></div><button class="x" onclick="rm('sc',${x.id})">×</button></div>`}).join('')}</div>`).join('');
+$('#bl2').innerHTML=S.sub.map(s=>`<div class="it" style="border-left-color:${s.c}"><div class="gr"><b>${esc(s.n)}</b></div><span class="tag" style="background:${s.c}">&nbsp;</span><button class="x" onclick="rm('sub',${s.id})">×</button></div>`).join('');
+$$('.ss').forEach(e=>{const v=e.value;e.innerHTML=S.sub.map(s=>`<option value="${s.id}">${esc(s.n)}</option>`).join('');if(v)e.value=v});
+if(!$('#d').value)$('#d').value=sel}
+const fm=(id,k)=>$(id).onsubmit=e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target));for(const x in o)o[x]=String(o[x]).trim();if(('t' in o&&!o.t)||('n' in o&&!o.n)||(o.a&&o.b&&o.b<=o.a)){ts(T[L].inv);return}S[k].push({id:Date.now(),done:false,...o});e.target.reset();sv();R();if(k=='sub')R()};
+fm('#fe','ev');fm('#fh','hw');fm('#fs','sc');fm('#fu','sub');
+$('#q').oninput=e=>{q=e.target.value.trim();if(q)go('list');R()};
+$('#bl').onclick=()=>{L=S.l=L=='fr'?'en':'fr';sv();tr();R()};
+$('#bt').onclick=()=>{const d=document.documentElement,dk=d.dataset.theme=='dark'||(!d.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);S.th=d.dataset.theme=dk?'light':'dark';sv()};
+$('#bp').onclick=()=>print();
+$('#nt').value=S.note;$('#nt').oninput=e=>{S.note=e.target.value;sv()};
+if(S.th)document.documentElement.dataset.theme=S.th;
+let pmd=0,ps=1500,pi=null;
+function pd(){$('#pt').textContent=String(ps/60|0).padStart(2,'0')+':'+String(ps%60).padStart(2,'0');$('#pl').textContent=T[L][pmd?'brk':'work'];$('#p1').textContent=T[L][pi?'stop':'go'];$('#p2').textContent=T[L].rs;$('#pl').style.background=pmd?'var(--r)':'var(--g)'}
+$('#p1').onclick=()=>{if(pi){clearInterval(pi);pi=null}else pi=setInterval(()=>{if(--ps<=0){pmd=1-pmd;ps=pmd?300:1500;try{navigator.vibrate(400)}catch(e){}}pd()},1000);pd()};
+$('#p2').onclick=()=>{clearInterval(pi);pi=null;pmd=0;ps=1500;pd()};
+tr();R();
+$$('[data-d]').forEach(b=>b.onclick=()=>{$('#dh').textContent=T[L][b.dataset.d+'t'];$('#db').innerHTML=T[L][b.dataset.d+'x'].split('¶').map(x=>'<p>'+x+'</p>').join('');$('#dg').showModal()});
+$('#ck').hidden=!!S.ck;$('#ok').onclick=()=>{S.ck=1;sv();$('#ck').hidden=true};
+</script></body></html>
