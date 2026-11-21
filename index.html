@@ -161,6 +161,13 @@ header h1{flex:1 1 auto;min-width:0}.hb{flex:0 0 auto;min-width:0}#pfb{white-spa
 .btn:hover,.ib:hover{transform:translateY(-1px)}.rip{position:absolute;border-radius:50%;background:currentColor;opacity:.25;transform:scale(0);animation:rip .6s ease-out;pointer-events:none}
 body.noan *,body.noan *::before,body.noan *::after{animation:none!important;transition:none!important}
 @media(prefers-reduced-motion:reduce){.rip{display:none}}
+#tour{position:fixed;inset:0;z-index:9999}#tour.full{background:rgba(0,0,0,.62)}
+#tuh{position:fixed;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.62),0 0 0 3px var(--y);transition:all .3s ease;pointer-events:none}#tour.full #tuh{display:none}
+#tub{position:fixed;background:var(--c);color:var(--t);border-radius:16px;padding:16px;box-shadow:0 12px 40px rgba(0,0,0,.35);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s,top .3s,left .3s}
+#tour.vis #tub{opacity:1;transform:none}#tub h3{font-size:18px;margin:8px 0 6px}#tub p{color:var(--m);margin-bottom:14px;line-height:1.5}
+.tud{display:flex;gap:5px}.tud i{width:7px;height:7px;border-radius:9px;background:var(--b);transition:all .25s}.tud i.ok{background:var(--g)}.tud i.on{width:20px;background:var(--g)}
+.tua{display:flex;align-items:center;gap:8px}.tua span{flex:1}.tua .lk{padding:6px 0}
+body.noan #tuh,body.noan #tub{transition:none}body.touring .ck{display:none!important}
 </style></head><body>
 <div class="flag"></div>
 <svg aria-hidden="true" class="sbg" viewBox="0 0 24 24"><path d="M12 1.5l3 6.9 7.5.7-5.7 5 1.7 7.4L12 17.5 5.5 21.5l1.7-7.4-5.7-5 7.5-.7z"/></svg>
@@ -195,7 +202,7 @@ body.noan *,body.noan *::before,body.noan *::after{animation:none!important;tran
 <section class="sec on" id="home"><div id="hm"></div></section>
 <section class="sec" id="gr"><form class="card f" id="fg"><label><span data-i="s"></span><select class="ss" name="s"></select></label><label><span data-i="t"></span><input name="t" required maxlength="60"></label><label><span data-i="gv"></span><input type="number" name="v" min="0" step="any" required></label><label><span data-i="gm"></span><input type="number" name="mx" min="1" step="any" value="20" required></label><label><span data-i="cf"></span><input type="number" name="cf" min="0.5" step="any" value="1" required></label><button class="btn">＋ <span data-i="add"></span></button></form><div class="card"><h2 data-i="sim"></h2><div class="f"><label><span data-i="s"></span><select class="ss" id="smS"></select></label><label><span data-i="stg"></span><input type="number" id="smT" value="10" min="0" max="20" step="any"></label><label><span data-i="cf"></span><input type="number" id="smC" value="1" min="0.5" step="any"></label></div><p id="smR" style="margin-top:10px;font-weight:700"></p></div><div id="gl"></div></section>
 <section class="sec" id="st"><div id="stl"></div></section>
-<section class="sec" id="set"><div class="card"><h2 data-i="perso2"></h2><div class="f"><label><span data-i="pnl"></span><input id="pn" maxlength="30"></label><label><span data-i="w0l"></span><select id="w0"></select></label><label><span data-i="fsl"></span><select id="fsz"></select></label><label><span data-i="gfl"></span><select id="gf"></select></label><label><span data-i="anl"></span><select id="an"></select></label></div></div><div class="card"><h2 data-i="hcl"></h2><div id="hcs" style="display:grid;gap:8px"></div></div><div class="card" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="inst" hidden data-i="inst"></button><button class="btn" onclick="shr()" data-i="shb"></button><button class="btn" onclick="ntp()" data-i="ntb"></button><button class="btn" onclick="tuto(0)" data-i="tuR"></button><button class="btn" onclick="fbk('w')" data-i="fbb"></button><button class="btn" onclick="fbk('e')" data-i="fbe"></button><button class="btn po" onclick="csv('xp')" data-i="cxp"></button><button class="btn po" onclick="csv('tm')" data-i="ctm"></button></div><div class="card"><h2 data-i="prof2"></h2><p style="margin-bottom:10px;color:var(--m)" data-i="profx"></p><button class="btn" onclick="switchProfile()" data-i="swp"></button></div><div class="card"><h2 data-i="bk"></h2><p data-i="bkx" style="margin-bottom:10px"></p><p id="lbt" style="margin-bottom:10px;font-weight:600"></p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="exp()" data-i="exp"></button><label class="ib" style="cursor:pointer;display:inline-block;color:var(--t)"><span data-i="imp"></span><input id="im" type="file" accept=".json,application/json" hidden></label></div></div><div class="card"><h2 data-i="dng"></h2><button class="btn" style="background:var(--r)" onclick="if(confirm(T[L].cfm)){try{localStorage.removeItem('agenda-cm')}catch(e){}location.reload()}" data-i="rst"></button></div></section>
+<section class="sec" id="set"><div class="card"><h2 data-i="perso2"></h2><div class="f"><label><span data-i="pnl"></span><input id="pn" maxlength="30"></label><label><span data-i="w0l"></span><select id="w0"></select></label><label><span data-i="fsl"></span><select id="fsz"></select></label><label><span data-i="gfl"></span><select id="gf"></select></label><label><span data-i="anl"></span><select id="an"></select></label></div></div><div class="card"><h2 data-i="hcl"></h2><div id="hcs" style="display:grid;gap:8px"></div></div><div class="card" style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="inst" hidden data-i="inst"></button><button class="btn" onclick="shr()" data-i="shb"></button><button class="btn" onclick="ntp()" data-i="ntb"></button><button class="btn" onclick="tuto(0)" data-i="tuR"></button><button class="btn" onclick="fbk('w')" data-i="fbb"></button><button class="btn" onclick="fbk('e')" data-i="fbe"></button><button class="btn po" onclick="csv('xp')" data-i="cxp"></button><button class="btn po" onclick="csv('tm')" data-i="ctm"></button></div><div class="card"><h2 data-i="prof2"></h2><p style="margin-bottom:10px;color:var(--m)" data-i="profx"></p><button class="btn" onclick="switchProfile()" data-i="swp"></button></div><div class="card" id="bkc"><h2 data-i="bk"></h2><p data-i="bkx" style="margin-bottom:10px"></p><p id="lbt" style="margin-bottom:10px;font-weight:600"></p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="exp()" data-i="exp"></button><label class="ib" style="cursor:pointer;display:inline-block;color:var(--t)"><span data-i="imp"></span><input id="im" type="file" accept=".json,application/json" hidden></label></div></div><div class="card"><h2 data-i="dng"></h2><button class="btn" style="background:var(--r)" onclick="if(confirm(T[L].cfm)){try{localStorage.removeItem('agenda-cm')}catch(e){}location.reload()}" data-i="rst"></button></div></section>
 <section class="sec" id="pj"><form class="card f" id="fp"><label><span data-i="t"></span><input name="t" required maxlength="80"></label><label><span data-i="due"></span><input type="date" name="d"></label><button class="btn">＋ <span data-i="add"></span></button></form><div id="pjl"></div></section>
 <section class="sec" id="xp"><form class="card f" id="fx"><label><span data-i="t"></span><input name="t" required maxlength="60"></label><label><span data-i="amt"></span><input type="number" name="m" min="0" step="any" required></label><label><span data-i="d"></span><input type="date" name="d" required></label><label><span data-i="cat"></span><select id="xk" name="k"></select></label><button class="btn">＋ <span data-i="add"></span></button></form><div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><h2 data-i="xp"></h2><select id="cur" style="width:auto"><option>FCFA</option><option>€</option><option value="CAD">CAD (C$)</option><option value="$">USD ($)</option></select></div><div id="xpl"></div></div></section>
 <section class="sec" id="ct"><form class="card f" id="fc"><label><span data-i="n"></span><input name="n" required maxlength="60"></label><label><span data-i="comp"></span><input name="co" maxlength="60"></label><label><span data-i="tel"></span><input type="tel" name="ph" maxlength="30"></label><label><span data-i="mail"></span><input type="email" name="em" maxlength="80"></label><button class="btn">＋ <span data-i="add"></span></button></form><div class="card"><h2 data-i="ct"></h2><div id="ctl2"></div></div></section>
@@ -363,7 +370,40 @@ shtx|Essaie Jwangenda : agenda, tâches, Pomodoro et plus, gratuit !|Try Jwangen
 ntb|🔔 Activer les notifications|🔔 Enable notifications
 nons|Notifications non prises en charge.|Notifications not supported.
 nod|Notifications refusées dans le navigateur.|Notifications blocked in the browser.
-tuR|❓ Revoir le tutoriel|❓ Replay the tutorial
+tuR|❓ Revoir le guide|❓ Replay the tour
+tuP|Précédent|Back
+tuS|Passer|Skip
+tuD|Guide terminé. Tu peux le revoir dans Réglages.|Tour done. You can replay it in Settings.
+twT|Bienvenue sur Jwangenda 👋|Welcome to Jwangenda 👋
+tw|Je te fais visiter en une minute. Tu peux passer à tout moment et revoir ce guide dans Réglages.|Let me show you around in one minute. You can skip anytime and replay this tour in Settings.
+thT|Ton accueil|Your home
+th|Ta journée d'un coup d'œil : ton niveau, ta série de jours et ce qui arrive bientôt. Termine des tâches pour gagner de l'XP.|Your day at a glance: your level, your streak and what's coming up. Finish tasks to earn XP.
+thpT|Ton tableau de bord|Your dashboard
+thp|Tes heures, tes dépenses, tes projets et tes échéances, résumés au même endroit.|Your hours, expenses, projects and deadlines, all in one place.
+tnT|Les grandes familles|Main sections
+tn|Cette barre regroupe l'app en quelques familles. Touche-en une pour l'ouvrir.|This bar groups the app into a few sections. Tap one to open it.
+tn2T|Les onglets|Tabs
+tn2|Chaque famille a ses onglets ici. Glisse vers la gauche pour voir les autres.|Each section has its own tabs here. Swipe left to see more.
+tceT|Ajouter un événement|Add an event
+tce|Mets un titre et une date, puis touche Ajouter. Choisis « Répéter » pour un cours chaque semaine, et un rappel pour être prévenu. Touche ✎ pour modifier.|Enter a title and a date, then tap Add. Use “Repeat” for a weekly class and set a reminder to get notified. Tap ✎ to edit.
+thwT|Tes devoirs|Your homework
+thw|Note chaque devoir avec sa matière et sa date limite. Coche-le quand il est fait.|Log each assignment with its subject and due date. Check it off when it's done.
+tpjT|Tes projets|Your projects
+tpj|Crée un projet, puis découpe-le en étapes. Chaque étape cochée fait avancer le projet.|Create a project, then split it into steps. Each step you check moves it forward.
+ttmT|La pointeuse|Time clock
+ttm|Touche le bouton en arrivant, puis encore en partant. Tes heures se calculent toutes seules.|Tap the button when you arrive, then again when you leave. Your hours add up on their own.
+txpT|Tes dépenses|Your expenses
+txp|Ajoute chaque dépense avec son montant et sa catégorie. Tu peux choisir ta devise.|Add each expense with its amount and category. You can pick your currency.
+tqT|La recherche|Search
+tq|Tape un mot ici pour tout retrouver en un instant.|Type a word here to find anything in a second.
+tpoT|Le Pomodoro|Pomodoro
+tpo|Travaille 25 minutes, puis prends une pause. Chaque session terminée te rapporte de l'XP.|Work for 25 minutes, then take a break. Each finished session earns you XP.
+tbkT|Ta sauvegarde|Your backup
+tbk|Tout reste sur ton téléphone. Exporte tes données de temps en temps pour ne rien perdre si tu changes d'appareil.|Everything stays on your phone. Export your data now and then so you don't lose anything if you switch devices.
+thbT|Les réglages rapides|Quick settings
+thb|Ici, tu changes de profil, passes en anglais, actives le mode sombre ou imprimes en PDF.|Here you can switch profile, change language, turn on dark mode or print to PDF.
+tendT|C'est parti ! 🎉|You're all set! 🎉
+tend|Commence par ajouter ton premier événement. Ce guide reste dans Réglages si tu en as besoin.|Start by adding your first event. This tour stays in Settings if you need it.
 tut|Bienvenue 👋|Welcome 👋
 tun|Suivant|Next
 tuo|C'est parti !|Let's go!
@@ -551,8 +591,20 @@ function chk(){const n=Date.now();S.nt=S.nt||{};let c=0;S.ev.forEach(e=>{if(!e.a
 setInterval(chk,30000);setTimeout(chk,2500);
 function ntp(){if(!window.Notification){ts(T[L].nons);return}Notification.requestPermission().then(p=>ts(p=='granted'?'🔔 OK':T[L].nod,p=='granted'))}
 function shr(){const u=location.href.split('?')[0].replace(/agenda-etudiant\.html$/,''),t=T[L].shtx;if(navigator.share)navigator.share({title:T[L].title,text:t,url:u}).catch(()=>{});else open('https://wa.me/?text='+encodeURIComponent(t+' '+u))}
-function tuto(i){const st=['tu1'+(S.pf=='pro'?'p':'e'),'tu2','tu3','tu4'];$('#dh').textContent=T[L].tut+' '+(i+1)+'/4';$('#db').innerHTML=`<p>${T[L][st[i]]}</p><div style="padding:6px 0 16px"><button class="btn" onclick="${i<3?'tuto('+(i+1)+')':"$('#dg').close()"}">${T[L][i<3?'tun':'tuo']}</button></div>`;if(!$('#dg').open)$('#dg').showModal()}
+const TU={etu:[[0,0,'tw'],['home','#hm>*','th'],['hw','#tb','tn'],['hw','#tb2','tn2'],['cal','#fe','tce'],['hw','#fh','thw'],['pom','#pom .pm','tpo'],['home','#q','tq'],['set','#bkc','tbk'],['home','.hb','thb'],[0,0,'tend']],pro:[[0,0,'tw'],['home','#hm>*','thp'],['pj','#tb','tn'],['pj','#tb2','tn2'],['cal','#fe','tce'],['pj','#fp','tpj'],['tm','#tm .card','ttm'],['xp','#fx','txp'],['home','#q','tq'],['set','#bkc','tbk'],['home','.hb','thb'],[0,0,'tend']]};
+function tuto(i){const st=TU[S.pf=='pro'?'pro':'etu'],n=st.length;if($('#dg').open)$('#dg').close();if(i>=n)return tuEnd();i=Math.max(0,i);tuto.i=i;const[sec,sl,k]=st[i];if(sec&&sec!=tab)go(sec);
+let o=$('#tour');if(!o){o=document.createElement('div');o.id='tour';o.innerHTML='<div id="tuh"></div><div id="tub" role="dialog" aria-modal="true" aria-labelledby="tubt"></div>';document.body.appendChild(o);document.body.classList.add('touring');addEventListener('resize',tpos);addEventListener('scroll',tpos,{passive:true});if(!tuto.k&&(tuto.k=1))addEventListener('keydown',e=>{if(!$('#tour'))return;if(e.key=='Escape')tuEnd();if(e.key=='ArrowRight')tuto(tuto.i+1);if(e.key=='ArrowLeft'&&tuto.i>0)tuto(tuto.i-1)})}
+const last=i==n-1;$('#tub').innerHTML=`<div class="tud">${st.map((_,j)=>`<i class="${j==i?'on':j<i?'ok':''}"></i>`).join('')}</div><h3 id="tubt">${T[L][k+'T']}</h3><p>${T[L][k]}</p><div class="tua">${last?'':`<button class="lk" onclick="tuEnd()">${T[L].tuS}</button>`}<span></span>${i?`<button class="ib" onclick="tuto(${i-1})">${T[L].tuP}</button>`:''}<button class="btn" onclick="tuto(${i+1})">${T[L][last?'tuo':'tun']}</button></div>`;
+o.classList.remove('vis');tuto.el=sl?$(sl):null;if(tuto.el&&tuto.el.classList.contains('fold')&&!tuto.el.classList.contains('open')){tuto.el.classList.add('open');tuto.el.dataset.tuo=1}if(tuto.el&&!tuto.el.getClientRects().length)tuto.el=null;
+if(tuto.el){const r=tuto.el.getBoundingClientRect();if(r.top<70||r.bottom>innerHeight-200)tuto.el.scrollIntoView({block:r.height>innerHeight*.5?'start':'center',behavior:'smooth'})}
+setTimeout(()=>{tpos();o.classList.add('vis');const b=$('#tub .btn');if(b)b.focus({preventScroll:true})},tuto.el?380:30)}
+function tpos(){const o=$('#tour');if(!o)return;const h=$('#tuh'),b=$('#tub'),e=tuto.el,W=innerWidth,H=innerHeight,bw=Math.min(360,W-24);b.style.width=bw+'px';
+if(!e){o.classList.add('full');h.style.cssText='';b.style.left=(W-bw)/2+'px';b.style.top=Math.max(12,(H-b.offsetHeight)/2)+'px';return}
+o.classList.remove('full');const r=e.getBoundingClientRect(),p=6,t=Math.max(4,r.top-p),bt=Math.min(H-4,r.bottom+p);h.style.cssText=`left:${Math.max(4,r.left-p)}px;top:${t}px;width:${Math.min(W-8,r.width+2*p)}px;height:${Math.max(0,bt-t)}px`;
+const bh=b.offsetHeight;let y=bt+12<=H-bh-12?bt+12:t-12-bh>=12?t-12-bh:H-bh-12;b.style.top=y+'px';b.style.left=Math.min(W-bw-12,Math.max(12,r.left+r.width/2-bw/2))+'px'}
+function tuEnd(){const o=$('#tour');document.body.classList.remove('touring');if(o){o.remove();removeEventListener('resize',tpos);removeEventListener('scroll',tpos)}tuto.el=null;$$('[data-tuo]').forEach(f=>{f.classList.remove('open');delete f.dataset.tuo});S.tu=2;sv();go('home');scrollTo({top:0,behavior:'smooth'});ts(T[L].tuD,1)}
 let dip;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dip=e;$('#inst').hidden=false});$('#inst').onclick=()=>{if(dip){dip.prompt();$('#inst').hidden=true}};
+if(S.pf&&(S.tu||0)<2)setTimeout(()=>{if(!$('#tour'))tuto(0)},1200);
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 const FBW='14185075656',FBE='wandjij00@gmail.com';
 const wd0=a=>S.w0=='1'?[a[6],...a.slice(0,6)]:a;
@@ -582,7 +634,7 @@ const d=S.lx?new Date(S.lx):null;$('#lbt').textContent=T[L].lbl+' : '+(d?d.toLoc
 $('#an').onchange=e=>{S.an=e.target.value;sv();document.body.classList.toggle('noan',S.an=='0')};
 addEventListener('pointerdown',e=>{if(S.an=='0')return;const b=e.target.closest&&e.target.closest('.btn,.ib,.tabs button,.gopt');if(!b)return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height),x=document.createElement('span');x.className='rip';x.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;if(getComputedStyle(b).position=='static')b.style.position='relative';b.style.overflow='hidden';b.appendChild(x);setTimeout(()=>x.remove(),600)});
 $('#gf').onchange=e=>{S.gf=e.target.value;sv();R()};
-function setProfile(p){S.pf=p;sv();ui();if(!S.tu){S.tu=1;sv();tuto(0)}}
+function setProfile(p){S.pf=p;sv();ui();if((S.tu||0)<2){S.tu=2;sv();setTimeout(()=>tuto(0),400)}}
 function switchProfile(){S.pf='';sv();ui()}
 function ui(){document.body.dataset.pf=S.pf||'etu';$('#gate').hidden=!!S.pf;$('#pfb').textContent=(S.pf=='pro'?'💼':'🎓')+' ▾';tab='home';tr();$('#pn').value=S.pn||'';$('#w0').value=S.w0||'0';$('#gf').value=S.gf||'20';$('#an').value=S.an||'1';document.body.classList.toggle('noan',S.an=='0');$('#fsz').value=S.fs||100;document.documentElement.style.setProperty('--fs',(S.fs||100)/100);R()}
 function stg(id,i){const p=S.pj.find(x=>x.id==id);p.st[i].ok=!p.st[i].ok;if(p.st[i].ok)confetti(p.st.every(z=>z.ok)?70:16);sv();R()}
